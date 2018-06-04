@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CarPartsStore__License_App_.Models.Manufacture>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+                Layout = "~/Areas/admin/Views/Shared/_layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<span style="display:block; height: 20px;"></span>
+
+<div class="container">
+    <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("create","manufactures")'">Adauga</button>
+</div>
+<span style="display:block; height: 20px;"></span>
+
+<div class="container-fluid">
+    <table id="manufactures" class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            var table = $("#manufactures").DataTable({
+                ajax: {
+                    url: "/api/manufactures",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        "bSortable": false,
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn btn-danger btn-xs js-delete' type='button' data-category-id=" +
+                                data +
+                                ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+            $("#manufactures").on("click",
+                ".js-delete",
+                function () {
+                    var button = $(this);
+
+                    bootbox.confirm("Esti sigur ca doresti sa stergi?",
+                        function (result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/manufactures/" + button.attr("data-category-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        table.row(button.closest("tr")).remove().draw();
+                                    }
+                                })
+                                    .done(function () {
+                                        toastr.success("Sters cu succes!");
+                                    })
+                                    .fail(function () {
+                                        toastr.fail("Stergere esuata!");
+                                    });
+                            }
+                        });
+                });
+        });
+    </script>
+}

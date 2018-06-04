@@ -1,0 +1,45 @@
+﻿@model CarPartsStore__License_App_.Models.ProductAttributeValue
+
+@{
+    ViewBag.Title = "Adauga";
+    Layout = "~/Areas/admin/Views/Shared/_layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Atribut</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Product_ID, "Produs", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-7">
+            @Html.DropDownList("Product_ID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Product_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+      <div class="form-group">
+            @Html.LabelFor(model => model.AttributeValue_ID, "Valoare Atribut", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.DropDownList("AttributeValue_ID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AttributeValue_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Adauga" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="container">
+        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("productattributes","attributes")'">Inapoi la lista</button>
+    </div>

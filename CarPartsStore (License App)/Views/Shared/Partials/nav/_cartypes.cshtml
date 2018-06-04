@@ -1,0 +1,53 @@
+﻿<li class="nav-item dropdown">
+    <a class="dropdown-toggle" data-toggle='dropdown' href="#">Piese Auto <span class="fa fa-caret-down"></span></a>
+    <ul class="dropdown-menu h-nav">
+        
+        @for (var i=0; i < 8; i+=1)
+        {
+
+            if (Model[i].parent_ID == null)
+            {
+                <li>
+                    <a class="dropdown-item dropdown-toggle" href="#">@Model[i].Name</a>
+                    <ul class="dropdown-menu">
+                        @foreach (var subc in Model)
+                        {
+                            if (subc.parent_ID == Model[i].ID)
+                            {
+                                if (subc.CarTypes.Count == 0)
+                                {
+                                    <li><a class="dropdown-item" href="@Url.Action("Cartype", "Shop", new {id = subc.ID})">@subc.Name</a></li>
+                                    <li class="divider"></li>
+                                }
+                                else
+                                {
+
+                                    <li>
+                                        <a class="dropdown-item dropdown-toggle" href="#">@subc.Name</a>
+
+                                        <ul class="dropdown-menu">
+                                            @foreach (var ssubc in Model)
+                                            {
+                                                if (ssubc.parent_ID == subc.ID)
+                                                {
+                                                    <li><a class="dropdown-item" href="@Url.Action("Cartype", "Shop", new {id = ssubc.ID})">@ssubc.Name</a></li>
+                                                    <li class="divider"></li>
+
+                                                }
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="divider"></li>
+
+                                }
+
+                            }
+                        }
+                    </ul>
+                </li>
+                <li class="divider"></li>
+            }
+        }
+        <li><a href="#">...mai mult</a></li>
+    </ul>
+</li>

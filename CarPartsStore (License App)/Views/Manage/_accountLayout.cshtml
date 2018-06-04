@@ -1,0 +1,73 @@
+﻿@{
+    ViewBag.Title = "_accountLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="b-pageHeader">
+    <div class="container">
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Shop</h1>
+        <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+            <h3>Contul meu</h3>
+        </div>
+    </div>
+</section><!--b-pageHeader-->
+
+<div class="b-breadCumbs s-shadow">
+    <div class="container wow zoomInUp" data-wow-delay="0.5s">
+        <a href="home.html" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Contul meu</a>
+    </div>
+</div><!--b-breadCumbs-->
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <ul class="nav nav-pills nav-stacked admin-menu">
+                <li class="dropdown-header" style="text-align: center;">Informații personale</li>
+                <li><a href="#" data-target-id="orders"><i class="glyphicon glyphicon-list-alt"></i> Comenzile mele</a></li>
+                <li><a href="#" data-target-id="cards"><i class="glyphicon glyphicon-credit-card"></i> Cardurile mele</a></li>
+                <li><a href="#" data-target-id="favorites"><i class="glyphicon glyphicon-heart"></i> Favorite</a></li>
+                <li class="dropdown-header" style="text-align: center;">Setări cont</li>
+                <li><a href="@Url.Action("Index","Manage")" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> Date personale</a></li>
+                <li><a href="@Url.Action("ChangePassword","Manage")" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> Resetare parolă</a></li>
+                <li><a href="#" data-target-id="settings"><i class="glyphicon glyphicon-cog"></i> Setări</a></li>
+                <li class="dropdown-header" style="text-align: center;">Acțiuni</li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()" data-target-id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+            </ul>
+        </div>
+
+
+        <section id="content">
+
+            @RenderBody()
+
+        </section>
+
+
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var navItems = $('.admin-menu li > a');
+            var navListItems = $('.admin-menu li');
+            var allWells = $('.admin-content');
+            var allWellsExceptFirst = $('.admin-content:not(:first)');
+            allWellsExceptFirst.hide();
+            navItems.click(function (e) {
+                e.preventDefault();
+                navListItems.removeClass('active');
+                $(this).closest('li').addClass('active');
+                allWells.hide();
+                var target = $(this).attr('data-target-id');
+                $('#' + target).show();
+            });
+        });
+    </script>
+
+}
+
+

@@ -1,0 +1,165 @@
+﻿@model IEnumerable<CarPartsStore__License_App_.Models.CarType>
+
+@{
+    ViewBag.Title = "Cartype";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <section class="b-pageHeader">
+        <div class="container">
+            <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Shop</h1>
+            <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+                <h3>Exista @Model.Count() tipuri de motorizari</h3>
+            </div>
+        </div>
+    </section><!--b-pageHeader-->
+
+    <div class="b-breadCumbs s-shadow">
+        <div class="container wow zoomInUp" data-wow-delay="0.5s">
+            <a href="home.html" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Motorizari</a>
+        </div>
+    </div><!--b-breadCumbs-->
+    <div class="content">
+
+        <div class="model-detail">
+            <div class="panel-body table-responsive">
+                <table class="table table-hover" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; font-size: 24px;">Motorizari</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="container">
+                <div class="well well-sm">
+                    <strong>Display</strong>
+                    <div class="btn-group">
+                        <a href="#" id="list" class="btn btn-default btn-sm" style="margin-right: 5px;">
+                            <span class="glyphicon glyphicon-th-list">
+                            </span>List
+                        </a> 
+                        <a href="#" id="grid" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-th"></span>Grid
+                        </a>
+                    </div>
+                </div>
+                <div id="products" class="row list-group">
+                    @foreach(var item in Model)
+                    {
+                        <a href="@Url.Action("categories", "shop", new { id = item.ID })">
+                            <div class="item col-md-3 col-sm-6 col-xs-6">
+                                <div class="thumbnail">
+                                    <img class="group list-group-image" src="https://www.autokarma.ro/image/cache/catalog/Modele/VW/PASSAT III Berlina-145x67.jpg" alt=""/>
+                                    <div class="caption">
+                                        <div class="description" style="text-align: center;">
+                                            <span style="font-weight: bold;">@item.Name</span>
+                                            <br>
+                                            <span style="font-size: 12px;">Capacitate: @item.CMC</span>
+                                            <br>
+                                            <span style="font-size: 12px;">Fabricatie: @item.Manufact_Year</span>
+                                            <br>
+                                            <span style="font-size: 12px;">Cod motor: @item.Motor_Cod</span>
+                                            <br>
+                                            <span style="font-size: 12px;">Putere: @item.KW cp</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+
+        </div>
+    
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function() {
+            $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+            $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+        });
+
+    </script>
+
+}
+<!--
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Body.Caroserie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CarType1.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufact_Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CMC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Motor_Cod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.slug)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body.Caroserie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType1.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufact_Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KW)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CMC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motor_Cod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.slug)
+            </td>
+            <td>
+                @Html.ActionLink("Link to categories", "categories", "shop", new { id = item.ID }, null)
+            </td>
+        </tr>
+    }
+
+</table>
+-->

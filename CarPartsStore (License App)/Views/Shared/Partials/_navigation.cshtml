@@ -1,0 +1,42 @@
+﻿<nav class="b-nav">
+    <div class="container">
+        <div class="home-row">
+            
+                <div class="b-nav__logo wow slideInLeft" data-wow-delay="0.3s">
+                    <a href="@Url.Action("index","home")">
+                        <img src="~/Content/images/logo/logo.png" alt="Logo">
+                    </a>
+                </div>    
+                <div class="col-sm-9 col-xs-8">
+                    <div class="b-nav__list wow slideInRight" data-wow-delay="0.3s">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="navbar-collapse collapse" id="nav">
+                            <ul class="navbar-nav">
+                                @Html.Action("GetCartypes", "Home")
+                                @Html.Action("GetUniversalCategories", "Home")
+                                <li><a href="compare.html">Anvelope</a></li>
+                                <li><a href="about.html">Jante</a></li>
+                                <li><a href="article.html">Servicii</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle='dropdown' href="#">Informatii <span class="fa fa-caret-down"></span></a>
+                                    <ul class="dropdown-menu h-nav">
+                                        <li><a href="blog.html">Blog 1</a></li>
+                                        <li><a href="blogTwo.html">Blog 2</a></li>
+                                        <li><a href="404.html">Page 404</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="contacts.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav><!--b-nav-->

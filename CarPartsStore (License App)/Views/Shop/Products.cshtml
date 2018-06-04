@@ -1,0 +1,308 @@
+﻿@model IEnumerable<CarPartsStore__License_App_.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="b-pageHeader">
+    <div class="container">
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Shop</h1>
+        <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+            <h3>Exista @Model.Count() tipuri de produse pe stoc</h3>
+        </div>
+    </div>
+</section><!--b-pageHeader-->
+
+<div class="b-breadCumbs s-shadow">
+    <div class="container wow zoomInUp" data-wow-delay="0.5s">
+        <a href="home.html" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Motorizari</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Categorii</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Produse</a>
+    </div>
+</div><!--b-breadCumbs-->
+
+<div class="b-infoBar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-xs-12">
+                <div class="b-infoBar__compare wow zoomInUp" data-wow-delay="0.5s">
+                    <div class="dropdown">
+                        <a href="#" class="dropdown-toggle b-infoBar__compare-item" data-toggle='dropdown'><span class="fa fa-clock-o"></span>Vizualizate recent<span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="detail.html">Item</a></li>
+                            <li><a href="detail.html">Item</a></li>
+                            <li><a href="detail.html">Item</a></li>
+                            <li><a href="detail.html">Item</a></li>
+                        </ul>
+                    </div>
+                    <a href="compare.html" class="b-infoBar__compare-item"><span class="fa fa-compress"></span>Compara produse: 2</a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-xs-12">
+                <div class="b-infoBar__select wow zoomInUp" data-wow-delay="0.5s">
+                    <form method="post" action="/">
+                        <div class="b-infoBar__select-one">
+                            <span class="b-infoBar__select-one-title">Tip vizualizare</span>
+                            <a href="listings.html" class="m-list m-active"><span class="fa fa-list"></span></a>
+                            <a href="listTableTwo.html" class="m-table"><span class="fa fa-table"></span></a>
+                        </div>
+                        <div class="b-infoBar__select-one">
+                            <span class="b-infoBar__select-one-title">Produse</span>
+                            <select name="select1" class="m-select">
+                                <option value="" selected="">10 pe pagina</option>
+                            </select>
+                            <span class="fa fa-caret-down"></span>
+                        </div>
+                        <div class="b-infoBar__select-one">
+                            <span class="b-infoBar__select-one-title">Sorteaza dupa</span>
+                            <select name="select2" class="m-select">
+                                <option value="" selected="">Last Added</option>
+                            </select>
+                            <span class="fa fa-caret-down"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--b-infoBar-->
+
+<div class="b-items">
+    <div class="container">
+        <div class="row">
+            <!--Filters-->
+            <div class="col-lg-3 col-sm-4 col-xs-12">
+                <aside class="b-items__aside">
+                    <h2 class="s-title wow zoomInUp" data-wow-delay="0.5s">Filtru Produse</h2>
+                    <div class="b-items__aside-main wow zoomInUp" data-wow-delay="0.5s">
+                        <form>
+                            <div class="b-items__aside-main-body">
+                                <div class="b-items__aside-main-body-item">
+                                    <label>SELECT A MAKE</label>
+                                    <div>
+                                        <select name="select1" class="m-select">
+                                            <option value="" selected="">Any Make</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+                                <div class="b-items__aside-main-body-item">
+                                    <label>SELECT A MODEL</label>
+                                    <div>
+                                        <select name="select1" class="m-select">
+                                            <option value="" selected="">Any Make</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+                                <div class="b-items__aside-main-body-item">
+                                    <label>PRICE RANGE</label>
+                                    <div class="slider"></div>
+                                    <input type="hidden" name="min" value="100" class="j-min" />
+                                    <input type="hidden" name="max" value="1000" class="j-max" />
+                                </div>
+                                <div class="b-items__aside-main-body-item">
+                                    <label>VEHICLE TYPE</label>
+                                    <div>
+                                        <select name="select1" class="m-select">
+                                            <option value="" selected="">Any Type</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+                                <div class="b-items__aside-main-body-item">
+                                    <label>VEHICLE STATUS</label>
+                                    <div>
+                                        <select name="select1" class="m-select">
+                                            <option value="" selected="">Any Status</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+                                <div class="b-items__aside-main-body-item">
+                                    <label>FUEL TYPE</label>
+                                    <div>
+                                        <select name="select1" class="m-select">
+                                            <option value="" selected="">All Fuel Types</option>
+                                        </select>
+                                        <span class="fa fa-caret-down"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="b-items__aside-main-footer">
+                                <button type="submit" class="btn m-btn">Aplica filtre<span class="fa fa-angle-right"></span></button><br />
+                                <a href="">Reseteaza filtre</a>
+                            </footer>
+                        </form>
+                    </div>
+
+                </aside>
+            </div>
+            <!--Filters END-->
+            <!--Products-->
+            <div class="col-lg-9 col-sm-8 col-xs-12">
+                <div class="b-items__cars">
+                    <!--products list start-->
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="b-items__cars-one wow zoomInUp" data-wow-delay="0.5s">
+                            <div class="b-items__cars-one-img">
+                                <img src="~/Content/images/@item.Image" alt='maxima' />
+                                <span class="b-items__cars-one-img-type m-leasing">Promo</span>
+                            </div>
+                            <div class="b-items__cars-one-info">
+                                <form class="b-items__cars-one-info-header s-lineDownLeft">
+                                    <h2>@item.Name</h2>
+                                    <input type="checkbox" name="check2" id='check2' />
+                                    <label for="check2" class="b-items__cars-one-img-check"><span class="fa fa-check"></span></label>
+                                </form>
+                                <div class="row s-noRightMargin">
+                                    <div class="col-md-9 col-xs-12">
+                                        <p>@item.Description</p>
+                                        <div class="row m-smallPadding m-width">
+                                            <div class="col-xs-12">
+                                                <div class="row m-smallPadding">
+                                                    @foreach (var attribute in item.ProductAttributeValue)
+                                                    {
+                                                        <div class="col-6 col-sm-3">
+                                                            <span class="b-items__cars-one-info-title">@attribute.AttributeValue.Attribute.Name :</span><span class="b-items__cars-one-info-value">@attribute.AttributeValue.AttributeValueName</span>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="b-items__cars-one-info-price">
+                                            <div class="pull-right">
+                                                <h3>Pret:</h3>
+                                                <h4>@item.Price Ron</h4>
+                                            </div>
+                                            <a href="detail.html" class="btn m-btn">Adauga Cos<span class="fa fa-angle-right"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    <!--products list end-->
+                </div>
+                <div class="b-items__pagination wow zoomInUp" data-wow-delay="0.5s">
+                    <div class="b-items__pagination-main">
+                        <a href="#" class="m-left"><span class="fa fa-angle-left"></span></a>
+                        <span class="m-active"><a href="#">1</a></span>
+                        <span><a href="#">2</a></span>
+                        <span><a href="#">3</a></span>
+                        <span><a href="#">4</a></span>
+                        <a href="#" class="m-right"><span class="fa fa-angle-right"></span></a>
+                    </div>
+                </div>
+            </div>
+            <!--Products END-->
+        </div>
+    </div>
+</div><!--b-items-->
+
+
+<!--
+<h2>Products</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CarType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufacture.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manufact_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price_Sale)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OnStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacture.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufact_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price_Sale)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OnStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+-->

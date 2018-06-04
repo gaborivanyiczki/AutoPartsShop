@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CarPartsStore__License_App_.Models.Category>
+
+@{
+    ViewBag.Title = "Categories";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <section class="b-pageHeader">
+        <div class="container">
+            <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Shop</h1>
+            <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+                <h3>Exista @Model.Count() categorii de produse</h3>
+            </div>
+        </div>
+    </section><!--b-pageHeader-->
+
+    <div class="b-breadCumbs s-shadow">
+        <div class="container wow zoomInUp" data-wow-delay="0.5s">
+            <a href="home.html" class="b-breadCumbs__page">Home</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Motorizari</a><span class="fa fa-angle-right"></span><a href="#" class="b-breadCumbs__page m-active">Categorii</a>
+        </div>
+    </div><!--b-breadCumbs-->
+    <div class="content">
+
+        <div class="model-detail">
+            <div class="panel-body table-responsive">
+                <table class="table table-hover" width="100%">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; font-size: 24px;">Categorii</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+
+            <div class="container">
+                <div class="well well-sm">
+                    <strong>Afisare</strong>
+                    <div class="btn-group">
+                        <a href="#" id="list" class="btn btn-default btn-sm" style="margin-right: 5px;">
+                            <span class="glyphicon glyphicon-th-list">
+                            </span>List
+                        </a>
+                        <a href="#" id="grid" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-th"></span>Grid
+                        </a>
+                    </div>
+                </div>
+                <div id="products" class="row list-group">
+                    @foreach (var item in Model)
+                    {
+                        if (item.parent_ID == null && item.Name != "Universale")
+                        {
+
+                            <a href="@Url.Action("products", "shop", new {cartype = TempData["Cartype"], category = item.ID})">
+                                <div class="item col-md-3 col-sm-6 col-xs-6">
+                                    <div class="thumbnail">
+                                        <img class="group list-group-image" src="~/Content/images/@item.Image" alt="" style="width: auto; height: 200px;"/>
+                                        <div class="caption">
+                                            <div class="description" style="text-align: center;">
+                                                <span style="font-weight: bold;">@item.Name</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#list').click(function (event) { event.preventDefault(); $('#products .item').addClass('list-group-item'); });
+            $('#grid').click(function (event) { event.preventDefault(); $('#products .item').removeClass('list-group-item'); $('#products .item').addClass('grid-group-item'); });
+        });
+
+    </script>
+
+}

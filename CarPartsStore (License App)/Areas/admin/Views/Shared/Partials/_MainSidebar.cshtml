@@ -1,0 +1,107 @@
+﻿<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="/Content/images/user/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Alexander Pierce</p>
+                <!-- Status -->
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form (Optional) -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- Sidebar Menu -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">Navigatie</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li class="treeview">
+                <a href="#"><i class="fa fa-user"></i> <span>Utilizatori</span></a>
+                <ul class="treeview-menu">
+                    <li><a href="#">Lista Utilizatori</a></li>
+                    <li><a href="#">Adauga Utilizatori</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-cubes"></i> <span>Modele Auto</span></a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="#">Autoturisme</a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("index", "cartypes")">Lista Autoturisme</a></li>
+                            <li><a href="@Url.Action("create", "cartypes")">Adauga Autoturism</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">Tipuri caroserie</a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("index", "body")">Lista Caroserii</a></li>
+                            <li><a href="@Url.Action("create", "body")">Adauga Caroserie</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-television"></i> <span>Categorii</span></a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("index","categories")">Lista Categorii</a></li>
+                    <li><a href="@Url.Action("create","categories")">Adauga Categorie</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-users"></i> <span>Furnizori</span></a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("index","suppliers")">Lista Furnizori</a></li>
+                    <li><a href="@Url.Action("create","suppliers")">Adauga Furnizori</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-tag"></i> <span>Producatori</span></a>
+                <ul class="treeview-menu">
+                    <li><a href="@Url.Action("index","manufactures")">Lista Producatori</a></li>
+                    <li><a href="@Url.Action("create","manufactures")">Adauga Producator</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-tag"></i> <span>Produse</span></a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="#">Produse</a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("index","product")">Lista Produse</a></li>
+                            <li><a href="@Url.Action("create","product")">Adauga Produs</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">Atribute</a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("productattributes","attributes")">Atribute Produse</a></li>
+                            <li><a href="@Url.Action("addattributes","attributes")">Adauga Atribute la Produse</a></li>
+                            <li><a href="@Url.Action("index","attributes")">Lista Atribute</a></li>
+                            <li><a href="@Url.Action("create","attributes")">Adauga Atribute</a></li>
+                            <li><a href="@Url.Action("values","attributes")">Lista Valori Atribute</a></li>
+                            <li><a href="@Url.Action("addvalues","attributes")">Adauga Valori Atribute</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+</aside>
+
