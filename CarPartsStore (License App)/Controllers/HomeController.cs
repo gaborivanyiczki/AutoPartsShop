@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using CarPartsStore__License_App_.Models;
+using CarPartsStore__License_App_.ViewModels;
 
 namespace CarPartsStore__License_App_.Controllers
 {
@@ -29,5 +30,7 @@ namespace CarPartsStore__License_App_.Controllers
             var cartypes = db.CarType.Include(c => c.CarType1).ToList();
             return PartialView(@"~/Views/Shared/Partials/nav/_cartypes.cshtml", cartypes);
         }
+
+
     }
 }

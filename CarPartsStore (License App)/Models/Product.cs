@@ -31,6 +31,8 @@ namespace CarPartsStore__License_App_.Models
 
         public int? Manufact_ID { get; set; }
 
+        [DataType(DataType.Currency)]
+        [DisplayFormat(DataFormatString = "{0:C}")]
         public decimal Price { get; set; }
 
         public decimal? Price_Sale { get; set; }

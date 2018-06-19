@@ -1,3 +1,66 @@
+.product-info {
+    margin-bottom: 30px;
+    padding: 30px;
+    color: #024381;
+}
+
+.product-info h1 {
+    text-transform: uppercase;
+    margin: 0;
+    display: inline-block;
+}
+
+.product-info .product-extra {
+    padding: 5px 0;
+}
+
+.product-info .description {
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.product-info .price {
+    color: #828282;
+    font-weight: 700;
+}
+
+.price {
+    line-height: 30px;
+    padding: 0 0;
+    color: #e94b42;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+.badge-notify{
+     background:red;
+     position:relative;
+     top: -20px;
+     right: 10px;
+}
+.my-cart-icon-affix {
+    position: fixed;
+    z-index: 999;
+}
+
+.col-cart {
+    width: 280px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 0 none;
+    display: table;
+    margin-top: 10px;
+}
+
+.separator-div {
+    margin: 20px 0;
+    border-bottom: 1px solid #ccc;
+    height: 1px;
+}
 /* CSS for favorite dropdown */
 .dropdown-love {
     position: relative;

@@ -140,19 +140,19 @@
             <!--Filters END-->
             <!--Products-->
             <div class="col-lg-9 col-sm-8 col-xs-12">
-                <div class="b-items__cars">
+                <div class="b-items__cars" id="productdiv">
                     <!--products list start-->
                     @foreach (var item in Model)
                     {
-
+                        
                         <div class="b-items__cars-one wow zoomInUp" data-wow-delay="0.5s">
                             <div class="b-items__cars-one-img">
-                                <img src="~/Content/images/@item.Image" alt='maxima' />
+                                <a href="@Url.Action("Product","Shop",new { id = item.ID })"><img src="~/Content/images/@item.Image" /></a>
                                 <span class="b-items__cars-one-img-type m-leasing">Promo</span>
                             </div>
                             <div class="b-items__cars-one-info">
                                 <form class="b-items__cars-one-info-header s-lineDownLeft">
-                                    <h2>@item.Name</h2>
+                                    <a href="@Url.Action("Product","Shop",new { id = item.ID })"><h2>@item.Name</h2></a>
                                     <input type="checkbox" name="check2" id='check2' />
                                     <label for="check2" class="b-items__cars-one-img-check"><span class="fa fa-check"></span></label>
                                 </form>
@@ -179,13 +179,12 @@
                                                 <h3>Pret:</h3>
                                                 <h4>@item.Price Ron</h4>
                                             </div>
-                                            <a href="detail.html" class="btn m-btn">Adauga Cos<span class="fa fa-angle-right"></span></a>
+                                            <a href="@Url.Action("AddtoCart","ShoppingCart", new { id = item.ID })" id='addtocart' class="btn m-btn">Adaugă Coș<span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     }
                     <!--products list end-->
                 </div>
@@ -205,104 +204,7 @@
     </div>
 </div><!--b-items-->
 
-
-<!--
-<h2>Products</h2>
-
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CarType.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Manufacture.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Supplier.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Manufact_Code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price_Sale)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Available)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OnStock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Units)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CarType.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufacture.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Supplier.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manufact_Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price_Sale)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OnStock)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Units)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            </td>
-        </tr>
-    }
-
-</table>
--->
+@section scripts
+{
+    <script src="~/Scripts/js-dev/toaster.js"></script>
+}

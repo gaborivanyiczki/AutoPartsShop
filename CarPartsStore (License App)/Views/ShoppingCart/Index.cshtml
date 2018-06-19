@@ -1,0 +1,143 @@
+﻿@model CarPartsStore__License_App_.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="b-pageHeader">
+    <div class="container">
+        <h1 class=" wow zoomInLeft" data-wow-delay="0.5s">Shop</h1>
+        <div class="b-pageHeader__search wow zoomInRight" data-wow-delay="0.5s">
+            <h3>Există @Model.CartItems.Count produse în coș</h3>
+        </div>
+    </div>
+</section><!--b-pageHeader-->
+
+<div class="b-breadCumbs s-shadow">
+    <div class="container wow zoomInUp" data-wow-delay="0.5s">
+        <a href="home.html" class="b-breadCumbs__page">Acasă</a><span class="fa fa-angle-right"></span><a href="listingsTwo.html" class="b-breadCumbs__page m-active">Coș</a>
+    </div>
+</div><!--b-breadCumbs-->
+
+
+<div class="container">
+    <h3>
+        <b>Coșul meu</b>
+    </h3>
+
+    <div id="update-message">
+    </div>
+
+</div>
+<div class="container" style="background-color: aliceblue; border-radius: 10px; margin-top: 35px; margin-bottom: 35px;">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th style="width:50%">Produse</th>
+            <th style="width:10%">Preț</th>
+            <th style="width:8%">Cantitate</th>
+            <th style="width:22%" class="text-center">Subtotal</th>
+            <th style="width:10%"></th>
+        </tr>
+        </thead>
+        @foreach (var item in Model.CartItems)
+        {
+            <tbody style="background-color: white;">
+            <tr id="row-@item.RecordId">
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs"><img src="~/Content/images/@item.Product.Image" class="img-responsive" /></div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin">@Html.ActionLink(item.Product.Name, "Products", "Shop", new { id = item.Product.ID }, null)</h4>
+                            @if (item.Product.OnStock > 0)
+                            {
+                                <p>Disponibilitate: <b style="color: green;">În stoc</b></p>
+                                <h5 style="color: red;">*Produsul poate fi returnat în 30 zile calendaristice.</h5>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Price">@item.Product.Price Lei</td>
+                <td id="item-count-@item.RecordId" data-th="Quantity">
+                    <input type="number" class="form-control text-center" value="@item.Count">
+                </td>
+                <td data-th="Subtotal" class="text-center">@(item.Count * item.Product.Price) Lei</td>
+                <td class="actions" data-th="">
+                    <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                    <button class="btn btn-danger btn-sm RemoveLink" data-id="@item.RecordId"><i class="fa fa-trash-o"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        }
+        </table>
+    <div class="row">
+        <div class="col-md-3" style="margin-bottom: 20px;">
+            <a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Înapoi la cumpărături</a>
+        </div>
+            </div>
+</div>
+
+<div class="container" style="background-color: aliceblue; border-radius: 10px; margin-top: 35px; margin-bottom: 35px;">
+    <div class="col-md-8" style="background-color:#aaa;">
+        <h2>Text</h2>
+        <p>Some text..</p>
+    </div>
+    <div class="col-md-4" style="height: 400px;">
+        <div class="col-cart">
+            <h3 style="margin-bottom: 20px;"><b>Sumar comandă</b></h3>
+
+            <strong>Total produse:</strong><h5> @Model.CartTotal Lei</h5>
+           @if(Model.CartTotal < 200){
+            <strong>Cost livrare:</strong><h5> 20.00 Lei</h5>
+            <div class="separator-div"></div>
+               <div style="color: #000000; font-size: 20px;">
+                   <div style="font-weight: 700; margin-bottom: 5px;">Total:</div>
+                   <p style="font-weight: 700; font-size: 25px; margin: -7px 0 10px 0;">@(Model.CartTotal + 20) Lei</p>
+                   <a href="#" class="btn btn-success btn-block">Finalizează comanda <i class="fa fa-angle-right"></i></a>
+               </div>
+           }
+           else
+           {
+               <strong>Cost livrare:</strong><h5> Gratuit</h5>
+               <div class="separator-div"></div>
+               <div style="color: #000000; font-size: 20px;">
+                   <div style="font-weight: 700; margin-bottom: 5px;">Total:</div>
+                   <p style="font-weight: 700; font-size: 25px; margin: -7px 0 10px 0;">@Model.CartTotal Lei</p>
+                   <a href="#" class="btn btn-success btn-block">Finalizează comanda <i class="fa fa-angle-right"></i></a>
+               </div>
+           }
+        </div>
+    </div>
+</div>
+
+@section scripts
+    {
+
+    <script type="text/javascript">
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $(".RemoveLink").click(function () {
+                // Get the id from the link
+                var recordToDelete = $(this).attr("data-id");
+                if (recordToDelete != '') {
+                    // Perform the ajax post
+                    $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                        function (data) {
+                            // Successful requests get here
+                            // Update the page elements
+                            if (data.ItemCount == 0) {
+                                $('#row-' + data.DeleteId).fadeOut('slow');
+                            } else {
+                                $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                            }
+                            $('#cart-total').text(data.CartTotal);
+                           // $('#update-message').text(data.Message);
+                            toastr.success("Produsul a fost șters din coș.");
+                            $('#cart-status').text('Cart (' + data.CartCount + ')');
+                        });
+                }
+            });
+        });
+    </script>
+
+}

@@ -6,6 +6,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarPartsStore__License_App_.Models;
+using CarPartsStore__License_App_.ViewModels;
+
 
 namespace CarPartsStore__License_App_.Controllers
 {
@@ -42,11 +44,7 @@ namespace CarPartsStore__License_App_.Controllers
 
         public ActionResult Products(int cartype, int category)
         {
-            if (cartype == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
+            
             var products = db.Products.Where(c => c.CarType_ID == cartype).Where(x => x.Category_ID == category).ToList();
 
             if (products == null)
@@ -63,6 +61,31 @@ namespace CarPartsStore__License_App_.Controllers
                 return HttpNotFound();
 
             return View(products);
+        }
+
+        public ActionResult Cart()
+        {
+            var cart = ShoppingCart.GetCart(this.HttpContext);
+            var viewModel = new ShoppingCartViewModel
+            {
+                CartItems = cart.GetCartItems(),
+                CartTotal = cart.GetTotal()
+            };
+
+            return PartialView(@"~/Views/Shared/Partials/nav/_cart.cshtml",viewModel);
+        }
+
+        public ActionResult Product(int id)
+        {
+            var product = db.Products.SingleOrDefault(p => p.ID == id);
+
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(product);
+
         }
 
     }

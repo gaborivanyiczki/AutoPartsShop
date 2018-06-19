@@ -22,6 +22,9 @@ namespace CarPartsStore__License_App_.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductAttributeValue> ProductAttributeValues { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

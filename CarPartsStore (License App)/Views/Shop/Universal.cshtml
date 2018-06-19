@@ -134,26 +134,26 @@
                             </footer>
                         </form>
                     </div>
-                    
+
                 </aside>
             </div>
             <!--Filters END-->
             <!--Products-->
             <div class="col-lg-9 col-sm-8 col-xs-12">
-                <div class="b-items__cars">
+                <div class="b-items__cars" id="productdiv">
                     <!--products list start-->
                     @foreach (var item in Model)
                     {
 
                         <div class="b-items__cars-one wow zoomInUp" data-wow-delay="0.5s">
                             <div class="b-items__cars-one-img">
-                                <img src="~/Content/images/@item.Image" alt='maxima'/>
+                                <a href="@Url.Action("Product","Shop",new { id = item.ID })"><img src="~/Content/images/@item.Image" /></a>
                                 <span class="b-items__cars-one-img-type m-leasing">Promo</span>
                             </div>
                             <div class="b-items__cars-one-info">
                                 <form class="b-items__cars-one-info-header s-lineDownLeft">
-                                    <h2>@item.Name</h2>
-                                    <input type="checkbox" name="check2" id='check2'/>
+                                    <a href="@Url.Action("Product","Shop",new { id = item.ID })"><h2>@item.Name</h2></a>
+                                    <input type="checkbox" name="check2" id='check2' />
                                     <label for="check2" class="b-items__cars-one-img-check"><span class="fa fa-check"></span></label>
                                 </form>
                                 <div class="row s-noRightMargin">
@@ -164,9 +164,9 @@
                                                 <div class="row m-smallPadding">
                                                     @foreach (var attribute in item.ProductAttributeValue)
                                                     {
-                                                    <div class="col-6 col-sm-3">
-                                                    <span class="b-items__cars-one-info-title">@attribute.AttributeValue.Attribute.Name :</span><span class="b-items__cars-one-info-value">@attribute.AttributeValue.AttributeValueName</span>
-</div>
+                                                        <div class="col-6 col-sm-3">
+                                                            <span class="b-items__cars-one-info-title">@attribute.AttributeValue.Attribute.Name :</span><span class="b-items__cars-one-info-value">@attribute.AttributeValue.AttributeValueName</span>
+                                                        </div>
                                                     }
                                                 </div>
                                             </div>
@@ -179,7 +179,7 @@
                                                 <h3>Pret:</h3>
                                                 <h4>@item.Price Ron</h4>
                                             </div>
-                                            <a href="detail.html" class="btn m-btn">Adauga Cos<span class="fa fa-angle-right"></span></a>
+                                            <a href="@Url.Action("AddtoCart","ShoppingCart", new { id = item.ID })" id='addtocart' class="btn m-btn">Adaugă Coș<span class="fa fa-angle-right"></span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -204,3 +204,8 @@
         </div>
     </div>
 </div><!--b-items-->
+
+@section scripts
+{
+    <script src="~/Scripts/js-dev/toaster.js"></script>
+}

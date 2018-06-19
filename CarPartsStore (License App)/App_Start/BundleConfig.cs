@@ -9,7 +9,7 @@ namespace CarPartsStore__License_App_
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                        "~/Scripts/custom/jquery-{version}.js",
+                        "~/Scripts/jquery-1.10.2.min.js",
                         "~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js",
                         "~/Scripts/custom/modernizr.custom.js",
                        // "~/Scripts/custom/rendro-easy-pie-chart/dist/jquery.easypiechart.min.js",
@@ -20,6 +20,7 @@ namespace CarPartsStore__License_App_
                         "~/Scripts/custom/jquery.smooth-scroll.js",
                         "~/Scripts/custom/wow.min.js",
                        // "~/Scripts/custom/switcher.js",
+                        "~/Scripts/toastr.js",
                         "~/Scripts/custom/owl-carousel/owl.carousel.min.js",
                         "~/Scripts/custom/bxslider/jquery.bxslider.js",
                         "~/Scripts/custom/bxslider/jquery.ui-slider.js",
@@ -40,6 +41,7 @@ namespace CarPartsStore__License_App_
                       "~/Content/master.css",
                       "~/Scripts/jquery-ui-1.12.1/jquery-ui.css",
                       "~/Content/bootstrap-4-navbar.css",
+                      "~/Content/admin/dist/toastr.css",
                       "~/Content/assets/switcher/css/color2.css"));
         }
     }
